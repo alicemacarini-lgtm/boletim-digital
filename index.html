@@ -3,10 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boletim Digital</title>
+    <!-- Link para a folha de estilos CSS -->
     <link rel="stylesheet" href="style.css">
-    <title>boletim digital</title>
 </head>
 <body>
-    
+    <div class="container">
+        <!-- Cabeçalho principal com o título e a série -->
+        <header class="header">
+            <h1>Boletim Digital</h1>
+            <p class="subtitle">8º Ano — Estudante Exemplo</p>
+        </header>
+
+        <!-- Seção de Acesso por PIN -->
+        <section id="secao-acesso" class="acesso-container">
+            <div class="acesso-card">
+                <h2>Acesso ao Boletim</h2>
+                <div class="info-aluno-fixa">
+                    <p><strong>Série:</strong> 8º Ano</p>
+                    <p><strong>Turma:</strong> 8C</p>
+                    <p><strong>Nº de Chamada:</strong> 28</p>
+                </div>
+                <div class="campo-pin">
+                    <label for="input-pin">Digite seu PIN:</label>
+                    <input type="password" id="input-pin" placeholder="PIN" maxlength="20" autocomplete="off">
+                </div>
+                <button id="btn-entrar" class="btn-acao">Entrar</button>
+                <div id="mensagem-acesso" class="mensagem-status"></div>
+            </div>
+        </section>
+
+        <!-- Conteúdo do Boletim (inicialmente escondido até o login) -->
+        <div id="conteudo-boletim" style="display: none;">
+
+            <!-- Barra de Ações (Botão Alterar Dados / Salvar) -->
+            <div class="acoes-container">
+                <button id="btn-alternar-edicao" class="btn-acao">Alterar dados</button>
+                <button id="btn-salvar" class="btn-acao btn-salvar" style="display: none;">Salvar alterações</button>
+                <span id="mensagem-edicao" class="mensagem-status"></span>
+            </div>
+
+            <!-- Seção de cards com o resumo geral -->
+            <section class="cards-grid">
+                <div class="card">
+                    <h3>Média Geral</h3>
+                    <p id="card-media-geral" class="card-value">—</p>
+                </div>
+                <div class="card">
+                    <h3>Total de Faltas</h3>
+                    <p id="card-total-faltas" class="card-value">—</p>
+                </div>
+                <div class="card">
+                    <h3>Bom Desempenho</h3>
+                    <p id="card-bom-desempenho" class="card-value">—</p>
+                </div>
+                <div class="card">
+                    <h3>Precisam de Atenção</h3>
+                    <p id="card-atencao" class="card-value">—</p>
+                </div>
+                <div class="card">
+                    <h3>Frequência Geral</h3>
+                    <p id="card-frequencia" class="card-value">92%</p>
+                    <small>Frequência adequada</small>
+                </div>
+            </section>
+
+            <!-- Seção visual com os 3 Gráficos -->
+            <section class="area-graficos">
+                <article class="grafico-card">
+                    <h2>Média por disciplina</h2>
+                    <div class="grafico-container">
+                        <canvas id="graficoMediasDisciplinas"></canvas>
+                    </div>
+                </article>
+
+                <article class="grafico-card">
+                    <h2>Evolução da média geral</h2>
+                    <div class="grafico-container">
+                        <canvas id="graficoEvolucaoTrimestres"></canvas>
+                    </div>
+                </article>
+
+                <article class="grafico-card" id="cardFaltasTrimestres">
+                    <h2>Faltas por trimestre</h2>
+                    <div id="estadoFaltas"></div>
+                    <div class="grafico-container">
+                        <canvas id="graficoFaltasTrimestres"></canvas>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Tabela responsiva com as disciplinas -->
+            <section class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Disciplina</th>
+                            <th>1º Tri</th>
+                            <th>2º Tri</th>
+                            <th>3º Tri</th>
+                            <th>Média</th>
+                            <th>Faltas</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+                    <!-- O corpo da tabela será preenchido automaticamente pelo JavaScript -->
+                    <tbody id="tabela-boletim">
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- CDN do Chart.js para renderização dos gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script JavaScript responsável pela lógica das notas -->
+    <script src="script.js"></script>
 </body>
 </html>
